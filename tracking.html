@@ -1,3 +1,8 @@
+
+<head>
+  <!-- 使用官方示例代码, 手机摄像头一直是放大的状态, 无法正常识别, 怀疑是camera_para.dat文件控制的问题, 以后解决, 可以在head中先加以下代码解决 -->
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no," /> -->
+</head>
 <script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
 <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
 
@@ -23,32 +28,41 @@
 </style>
 
 <body style="margin : 0px; overflow: hidden;">
-  <!-- minimal loader shown until image descriptors are loaded -->
-  <!-- <div class="arjs-loader">
-    <div>Loading, please wait...</div>
-  </div> -->
+ <!--在图像描述符加载前显示 loading，根据设备的计算力，加载可能需要一点时间。-->
+ <div class="arjs-loader">
+  <div>Loading, please wait...</div>
+</div>
   <a-scene
-    vr-mode-ui="enabled: false;"
-    renderer="logarithmicDepthBuffer: true; precision: medium;"
-    embedded
-    arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
-  >
-    <!-- we use cors proxy to avoid cross-origin problems ATTENTION! you need to set up your server -->
+  vr-mode-ui="enabled: false;"
+  renderer="logarithmicDepthBuffer: true;"
+  embedded
+  arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
+>
+  <!-- a-nft是定义图像跟踪实体的锚点 -->
+    <!-- 在 url 使用到图像描述符的路径之前创建 -->
+    <!-- 路径应该以名称结束，无需扩展名。举例来说，如果文件是“pinball.fset”那么路径的结尾单次就是“pinball” -->
     <a-nft
       type="nft"
-      url="aframe/examples/image-tracking/nft/trex/trex-image/trex"
+      url="tracking/images"
       smooth="true"
       smoothCount="10"
       smoothTolerance=".01"
       smoothThreshold="5"
     >
+     <!-- 作为 a-nft 的子元素，您可以定义要显示的内容。下面是一个 GLTF 模型实体     position="150 300 -100"-->
       <a-entity
         gltf-model="aframe/examples/image-tracking/nft/trex/scene.gltf"
         scale="5 5 5"
-        position="150 300 -100"
+        position="0 0 0"
       >
       </a-entity>
+      <!-- <a-entity
+      position="0 0 0"
+      scale="0.05 0.05 0.05"
+      gltf-model="aframe/examples/image-tracking/nft/trex/scene.gltf"
+      ></a-entity> -->
     </a-nft>
+     <!-- 静态摄像机，根据设备的运动参数进行移动 -->
     <a-entity camera></a-entity>
   </a-scene>
 </body>
