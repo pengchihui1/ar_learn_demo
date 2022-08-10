@@ -1,13 +1,6 @@
 ## 教程
 10行hiro：https://medium.com/arjs/augmented-reality-in-10-lines-of-html-4e193ea9fdbf
-
-
-## 官方项目测试
-情况：手机端一直加载中，没反应
-代码：资源都有加载
-
-## 注意点
-ios 上的 Chrome 不支持相机访问。铬问题。请在 iphone 和 ipad 上使用 safari
+图片跟踪动的恐龙：https://www.mayumo.top/docs/arjs_aframe_4/
 
 ## 手机不能访问设置
 错误：Says Webcam Error Name: Message: WebRTC issue! navigator.mediaDevices not present in your browser
